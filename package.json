@@ -1,0 +1,27 @@
+{
+  "name": "dsh-secret-guard",
+  "version": "1.0.0",
+  "description": "Secret Guard 敏感内容守卫：工具执行前直接拒绝读取 .env、私钥、.ssh/.aws/.kube、.git-credentials、secrets.json 等敏感路径，以及引用它们的 cat/type/Get-Content 命令，文件不会被打开；工具结果回传前再脱敏 API Key、JWT、私钥块与连接串密码；并向模型注入禁止读取规则。放行 .env.example 等模板，可在插件管理器随时启停。",
+  "type": "module",
+  "main": "./index.js",
+  "exports": {
+    ".": "./index.js"
+  },
+  "files": [
+    "index.js",
+    "cordis.patch.yml",
+    "README.md"
+  ],
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "dsh-plugin",
+    "security",
+    "secret",
+    "redaction"
+  ],
+  "license": "MIT",
+  "dsh": {
+    "bundle": { "patch": "./cordis.patch.yml" }
+  }
+}

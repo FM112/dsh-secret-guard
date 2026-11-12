@@ -1,0 +1,7 @@
+- insert:
+    - id: secret-guard
+      name: 'dsh-secret-guard'
+      config:
+        blockReads: true
+        blockShell: true
+        redactResults: true
