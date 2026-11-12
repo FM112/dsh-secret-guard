@@ -2,6 +2,79 @@
 
 Secret Guard 敏感内容守卫 — 一个 DeepSeek Harness 宿主插件，在 Agent 接触凭据之前就把门关上。
 
+## 安装
+
+### 方式一：插件中心一键装（推荐，2 步）
+
+**1.** 打开 **设置 → 插件 → 安装**
+
+**2.** 在安装框里粘贴下面这一行，回车：
+
+```
+github:FM112/dsh-secret-guard
+```
+
+安装完成后，在 **设置 → 插件 → 已安装** 里找到 `Secret Guard`，打开开关即生效——**无需重启**。
+
+> 想锁定某个版本（避免上游更新带来变化），在末尾加 `#` 和标签或 commit：
+> ```
+> github:FM112/dsh-secret-guard#v1.0.0
+> ```
+
+### 方式二：插件市场里搜「Secret Guard」
+
+> **当前状态：尚未提交市场收录。** 市场的插件列表来自精选仓库
+> [awesome-dsh-plugin/awesome-dsh-plugin](https://github.com/awesome-dsh-plugin/awesome-dsh-plugin)，
+> 上架需要在那里提一个 PR 添加条目（站点与市场会自动同步，通常一天内生效）。
+> 在收录之前，市场里搜不到，请用**方式一**。
+
+收录之后，在 **设置 → 插件 → 市场** 搜索 `Secret Guard`，点安装即可，无需再记地址。
+
+### 装不上？先看这里
+
+`github:` 安装会从 GitHub 拉取仓库。如果你的网络访问 GitHub 不稳定（连接超时、时断时连），**这不是插件的问题**，按下面任一条处理：
+
+1. **用市场内置的加速线路**（最省事）：**设置 → 插件 → 插件配置 → GitHub 加速**，填入一个可用的 HTTPS 前缀。市场会记住上次可用的线路，失败自动换线。
+2. **改用 SSH 通道克隆后再本地挂载**：见**方式四**。SSH 走 22 端口，在部分网络下比 HTTPS 稳定。
+3. 换到网络通畅的环境安装，装好后再回来——插件文件已落盘，不受影响。
+
+### 方式三：手动写进 profile（高级）
+
+编辑本机 profile 的 `package.json`，加入依赖与 bundle：
+
+```json
+{
+  "dependencies": {
+    "dsh-secret-guard": "github:FM112/dsh-secret-guard"
+  },
+  "dsh": {
+    "profile": {
+      "bundles": ["dsh-secret-guard"]
+    }
+  }
+}
+```
+
+然后在该 profile 目录执行 `pnpm install`。
+
+### 方式四：本地开发挂载
+
+如果你在改这个插件本身，直接用本地目录，改完热重载：
+
+```powershell
+git clone git@github.com:FM112/dsh-secret-guard.git
+```
+
+安装时填本地绝对路径（或用 `link:` 前缀），例如 `link:C:\code\dsh-secret-guard`。
+
+### 验证是否生效
+
+安装启用后，让 Agent 读一个 `.env` 文件。预期结果是**被拒绝**并给出 deny 原因，而不是文件内容。若返回了内容，检查「已安装」里的开关状态。
+
+### 卸载
+
+**设置 → 插件 → 已安装** → 找到 `Secret Guard` → 卸载。配置项会一并清除，不留残留。
+
 ## 它做什么
 
 两层防护，时机不同：
@@ -46,39 +119,10 @@ Secret Guard 敏感内容守卫 — 一个 DeepSeek Harness 宿主插件，在 A
 | Stripe | `sk_live_`、`rk_test_` … |
 | npm | `npm_` + 30 位以上 |
 | JWT / Bearer / Basic | `eyJ...`、`Bearer ...`、`Basic ...` |
-| 连接串密码 | `postgres://user:pass@host` → 只抹密码段 |
+| 连接串密码 | `postgres://user:[REDACTED:password]@host` → 只抹密码段 |
 | `.env` 键值 | 键名含 `SECRET`/`TOKEN`/`PASSWORD`/`API_KEY` 等 |
 
 替换后形如 `[REDACTED:openai-key]`，键名与结构保留，模型仍能理解上下文。
-
-## 安装
-
-### 通过 DSH 插件管理器（推荐）
-
-设置 → 插件 → 安装，输入：
-
-```
-github:<你的用户名>/dsh-secret-guard
-```
-
-或填入本地目录的绝对路径。
-
-### 手动挂载
-
-在本机 profile 的 `package.json` 中加入依赖与 bundle：
-
-```json
-{
-  "dependencies": {
-    "dsh-secret-guard": "github:<你的用户名>/dsh-secret-guard"
-  },
-  "dsh": {
-    "profile": {
-      "bundles": ["dsh-secret-guard"]
-    }
-  }
-}
-```
 
 ## 配置
 
