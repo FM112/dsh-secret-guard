@@ -23,12 +23,12 @@ github:FM112/dsh-secret-guard
 
 ### 方式二：插件市场里搜「Secret Guard」
 
-> **当前状态：尚未提交市场收录。** 市场的插件列表来自精选仓库
-> [awesome-dsh-plugin/awesome-dsh-plugin](https://github.com/awesome-dsh-plugin/awesome-dsh-plugin)，
-> 上架需要在那里提一个 PR 添加条目（站点与市场会自动同步，通常一天内生效）。
-> 在收录之前，市场里搜不到，请用**方式一**。
+> **当前状态：已提交收录，等待评审。**
+> 收录申请见 [PR #15036](https://github.com/awesome-dsh-plugin/awesome-dsh-plugin/pull/15036)
+> （CI 已通过，等待维护者人工审阅）。合并后站点与市场会自动同步，通常一天内生效。
 
-收录之后，在 **设置 → 插件 → 市场** 搜索 `Secret Guard`，点安装即可，无需再记地址。
+收录生效后，在 **设置 → 插件 → 市场** 搜索 `Secret Guard`，点安装即可，无需再记地址。
+在此之前市场里搜不到，请用**方式一**。
 
 ### 装不上？先看这里
 
