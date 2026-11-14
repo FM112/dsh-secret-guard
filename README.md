@@ -1,5 +1,7 @@
 # dsh-secret-guard
 
+[![Awesome DSH Plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com/p/FM112/dsh-secret-guard/)
+
 Secret Guard 敏感内容守卫 — 一个 DeepSeek Harness 宿主插件，在 Agent 接触凭据之前就把门关上。
 
 ## 安装
@@ -23,12 +25,14 @@ github:FM112/dsh-secret-guard
 
 ### 方式二：插件市场里搜「Secret Guard」
 
-> **当前状态：已提交收录，等待评审。**
-> 收录申请见 [PR #15036](https://github.com/awesome-dsh-plugin/awesome-dsh-plugin/pull/15036)
-> （CI 已通过，等待维护者人工审阅）。合并后站点与市场会自动同步，通常一天内生效。
+**已收录。** 打开 **设置 → 插件 → 市场**，搜索 `Secret Guard`，点安装即可，不用记地址。
 
-收录生效后，在 **设置 → 插件 → 市场** 搜索 `Secret Guard`，点安装即可，无需再记地址。
-在此之前市场里搜不到，请用**方式一**。
+- 详情页：https://awesome-dsh-plugin.com/p/FM112/dsh-secret-guard/
+- 收录记录：[PR #15036](https://github.com/awesome-dsh-plugin/awesome-dsh-plugin/pull/15036)
+
+> 市场列表是每日从
+> [awesome-dsh-plugin](https://github.com/awesome-dsh-plugin/awesome-dsh-plugin)
+> 同步的。如果刚装好 DSH 就搜不到，等一天或先用**方式一**。
 
 ### 装不上？先看这里
 
